@@ -5,8 +5,8 @@
       "cflags!": [ "-fno-exceptions" ],
       "cflags_cc!": [ "-fno-exceptions" ],
       "sources": [
-        "./src/c/combinations.c",
-        "./src/c/index.c"
+        "./src/addon/combinations.c",
+        "./src/addon/index.c"
       ],
       "include_dirs": [
         "./node_modules/node-addon-api"

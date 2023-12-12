@@ -403,6 +403,17 @@
     "xcode_version": "13.0",
     "nodedir": "/Users/guilhermesevero/Library/Caches/node-gyp/18.18.0",
     "python": "/usr/local/bin/python3",
-    "standalone_static_library": 1
+    "standalone_static_library": 1,
+    "metrics_registry": "https://registry.npmjs.org/",
+    "global_prefix": "/Users/guilhermesevero/.nvm/versions/node/v18.18.0",
+    "local_prefix": "/Users/guilhermesevero/addon-analise-combinatoria",
+    "globalconfig": "/Users/guilhermesevero/.nvm/versions/node/v18.18.0/etc/npmrc",
+    "init_module": "/Users/guilhermesevero/.npm-init.js",
+    "userconfig": "/Users/guilhermesevero/.npmrc",
+    "npm_version": "9.8.1",
+    "node_gyp": "/Users/guilhermesevero/.nvm/versions/node/v18.18.0/lib/node_modules/npm/node_modules/node-gyp/bin/node-gyp.js",
+    "cache": "/Users/guilhermesevero/.npm",
+    "user_agent": "npm/9.8.1 node/v18.18.0 darwin arm64 workspaces/false",
+    "prefix": "/Users/guilhermesevero/.nvm/versions/node/v18.18.0"
   }
 }

@@ -116,8 +116,8 @@ INCS_Release := \
 	-I$(srcdir)/node_modules/node-addon-api
 
 OBJS := \
-	$(obj).target/$(TARGET)/src/c/combinations.o \
-	$(obj).target/$(TARGET)/src/c/index.o
+	$(obj).target/$(TARGET)/src/addon/combinations.o \
+	$(obj).target/$(TARGET)/src/addon/index.o
 
 # Add to the list of files we specially track dependencies for.
 all_deps += $(OBJS)
