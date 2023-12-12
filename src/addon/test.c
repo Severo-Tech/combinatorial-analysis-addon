@@ -11,7 +11,7 @@
 void printCombination(const Combination* combination) {
     printf("Combinação: %d\n", combination->size);
     for (int i = 0; i < combination->size; ++i) {
-        printf("    [%lld, %.2f]\n", combination->elements[i].id, combination->elements[i].value);
+        printf("    [%d, %.2f]\n", combination->elements[i].id, combination->elements[i].value);
     }
     printf("---------\n");
 }

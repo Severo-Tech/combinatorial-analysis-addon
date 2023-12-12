@@ -61,7 +61,7 @@ void findCombination(Combination* current, ICombinationsValue* remaining, int re
     if (fabs(remainingValue - 0.00) < FLOAT_ACCEPTABLE_DIFF) {
         *combinations = realloc(*combinations, (*combinationsCount + 1) * sizeof(Combination));
         (*combinations)[*combinationsCount] = *current;
-        ++(*combinationsCount);
+        *combinationsCount += 1;
         return;
     }
 

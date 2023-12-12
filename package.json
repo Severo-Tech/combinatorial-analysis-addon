@@ -1,6 +1,6 @@
 {
   "name": "@severo-tech/combinatorial-analysis",
-  "version": "1.0.3",
+  "version": "1.0.5",
   "description": "",
   "main": "dist/index.js",
   "files": [
@@ -10,7 +10,7 @@
     "src/addon"
   ],
   "scripts": {
-    "build": "rm -rf ./dist/ && npm run build:c && tsc",
+    "build": "rm -rf ./dist/ && npm run build:c && tsc -d",
     "build:c": "node-gyp clean configure build",
     "lint": "eslint 'src/**/*'",
     "lint:fix": "eslint --fix 'src/**/*'",

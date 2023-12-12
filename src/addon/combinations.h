@@ -1,5 +1,5 @@
 typedef struct {
-    int64_t id;
+    int id;
     double value;
 } ICombinationsValue;
 

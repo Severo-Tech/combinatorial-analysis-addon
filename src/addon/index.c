@@ -8,6 +8,13 @@
 // Função wrapper para combineByValue
 napi_value combineByValueWrapper(napi_env env, napi_callback_info info) {
     napi_status status;
+    napi_handle_scope scope;
+
+    status = napi_open_handle_scope(env, &scope);
+    if (status != napi_ok) {
+        napi_throw_error(env, NULL, "Cannot open Handle Scope");
+    }
+
     size_t argc = 2;
     napi_value argv[2];
     napi_get_cb_info(env, info, &argc, argv, NULL, NULL);
@@ -46,11 +53,21 @@ napi_value combineByValueWrapper(napi_env env, napi_callback_info info) {
     double target;
     napi_get_value_double(env, argv[1], &target);
 
+    status = napi_close_handle_scope(env, scope);
+    if (status != napi_ok) {
+        napi_throw_error(env, NULL, "Cannot close Handle Scope");
+    }
+
     int combinationsCount = 0;
     Combination* combinations = combineByValue(list, length, target, &combinationsCount);
 
     // Libere a memória alocada dinamicamente
     free(list);
+
+    status = napi_open_handle_scope(env, &scope);
+    if (status != napi_ok) {
+        napi_throw_error(env, NULL, "Cannot open Handle Scope");
+    }
 
     // Crie um array de objetos JS para armazenar as combinações
     napi_value resultArray;
@@ -67,7 +84,7 @@ napi_value combineByValueWrapper(napi_env env, napi_callback_info info) {
             napi_create_array_with_length(env, 2, &element);
 
             napi_value* intAux;
-            napi_create_int64(env, combinations[i].elements[j].id, &intAux);
+            napi_create_int32(env, combinations[i].elements[j].id, &intAux);
             napi_set_element(env, element, 0, intAux);
 
             napi_value* doubleAux = NULL;
@@ -86,6 +103,10 @@ napi_value combineByValueWrapper(napi_env env, napi_callback_info info) {
     // Libere a memória alocada dinamicamente
     free(combinations);
 
+    status = napi_close_handle_scope(env, scope);
+    if (status != napi_ok) {
+        napi_throw_error(env, NULL, "Cannot close Handle Scope");
+    }
     return resultArray;
 }
 
