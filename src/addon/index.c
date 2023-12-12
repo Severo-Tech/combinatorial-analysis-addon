@@ -49,6 +49,9 @@ napi_value combineByValueWrapper(napi_env env, napi_callback_info info) {
     int combinationsCount = 0;
     Combination* combinations = combineByValue(list, length, target, &combinationsCount);
 
+    // Libere a memória alocada dinamicamente
+    free(list);
+
     // Crie um array de objetos JS para armazenar as combinações
     napi_value resultArray;
     napi_create_array_with_length(env, combinationsCount, &resultArray);
@@ -76,10 +79,12 @@ napi_value combineByValueWrapper(napi_env env, napi_callback_info info) {
 
         // Adicione a combinação ao array de resultados
         napi_set_element(env, resultArray, i, combination);
+        // Libere a memória alocada dinamicamente
+        free(combinations[i].elements);
     }
 
     // Libere a memória alocada dinamicamente
-    free(list);
+    free(combinations);
 
     return resultArray;
 }

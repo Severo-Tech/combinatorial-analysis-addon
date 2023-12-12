@@ -15,7 +15,7 @@ int compareByValue(const void *a, const void *b) {
     return bValue - aValue;
 }
 
-Combination addElementToCombination(const Combination* current, const ICombinationsValue* element) {
+Combination addElementToCombination(Combination* current, ICombinationsValue* element) {
     Combination newCombination;
     newCombination.size = current->size + 1;
     newCombination.elements = malloc(newCombination.size * sizeof(ICombinationsValue));
@@ -29,7 +29,7 @@ Combination addElementToCombination(const Combination* current, const ICombinati
     return newCombination;
 }
 
-int validateRemainingList(const ICombinationsValue* remaining, int remainingSize, double remainingValue) {
+int validateRemainingList(ICombinationsValue* remaining, int remainingSize, double remainingValue) {
     // Filtrar elementos que cabem na soma
     int innerRemainingSize = 0;
     for (int i = 0; i < remainingSize; ++i) {
@@ -53,7 +53,7 @@ int validateRemainingList(const ICombinationsValue* remaining, int remainingSize
     return 1;
 }
 
-void findCombination(const Combination* current, const ICombinationsValue* remaining, int remainingSize, double remainingValue, Combination** combinations, int* combinationsCount) {
+void findCombination(Combination* current, ICombinationsValue* remaining, int remainingSize, double remainingValue, Combination** combinations, int* combinationsCount) {
     if (*combinationsCount >= MAX_ALLOWED_COMBINATIONS) {
         return;
     }
@@ -77,10 +77,11 @@ void findCombination(const Combination* current, const ICombinationsValue* remai
     double invoiceValue = invoice.value;
 
     Combination newCurrent = addElementToCombination(current, &invoice);
+    ICombinationsValue* newRemaining = remaining + 1;
 
     findCombination(
         &newCurrent,
-        remaining + 1,
+        newRemaining,
         remainingSize - 1,
         remainingValue - invoiceValue,
         combinations,
@@ -89,7 +90,7 @@ void findCombination(const Combination* current, const ICombinationsValue* remai
 
     findCombination(
         current,
-        remaining + 1,
+        newRemaining,
         remainingSize - 1,
         remainingValue,
         combinations,
