@@ -1,5 +1,5 @@
 {
-  "name": "combinatorial-analysis-addon",
+  "name": "@severo-tech/combinatorial-analysis",
   "version": "1.0.0",
   "description": "",
   "main": "dist/index.js",
@@ -47,10 +47,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@https://github.com/GuilhermeSevero/combinatorial-analysis-addon.git"
+    "url": "git+ssh://git@https://github.com/Severo-Tech/combinatorial-analysis-addon.git"
   },
   "bugs": {
-    "url": "https://https://github.com/GuilhermeSevero/combinatorial-analysis-addon/issues"
+    "url": "https://https://github.com/Severo-Tech/combinatorial-analysis-addon/issues"
   },
-  "homepage": "https://https://github.com/GuilhermeSevero/combinatorial-analysis-addon#readme"
+  "homepage": "https://https://github.com/Severo-Tech/combinatorial-analysis-addon#readme"
 }
