@@ -51,13 +51,13 @@ int main() {
       {0, 19.17},
       {0, 13.88},
       {0, 2116.48 },
-    //   {0, 164.61 },
-    //   {0, 436.70 },
-    //   {0, 180.07 },
-    //   {0, 2920.35 },
-    //   {0, 346.21 },
-    //   {0, 2315.22 },
-    //   {0, 227.1 }
+      {0, 164.61 },
+      {0, 436.70 },
+      {0, 180.07 },
+      {0, 2920.35 },
+      {0, 346.21 },
+      {0, 2315.22 },
+      {0, 227.1 }
     };
 
     int listSize = sizeof(list) / sizeof(ICombinationsValue);
@@ -76,9 +76,9 @@ int main() {
     printf("Total de Combinações: %d\n", combinationsCount);
 
     // Liberar a memória alocada dinamicamente
-    for (int i = 0; i < combinationsCount; ++i) {
-        free(combinations[i].elements);
-    }
+    // for (int i = 0; i < combinationsCount; ++i) {
+    //     free(combinations[i].elements);
+    // }
     free(combinations);
 
     return 0;

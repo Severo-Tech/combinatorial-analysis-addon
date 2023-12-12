@@ -62,6 +62,7 @@ void findCombination(Combination* current, ICombinationsValue* remaining, int re
         *combinations = realloc(*combinations, (*combinationsCount + 1) * sizeof(Combination));
         (*combinations)[*combinationsCount] = *current;
         *combinationsCount += 1;
+        free(current->elements);
         return;
     }
 

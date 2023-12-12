@@ -96,8 +96,8 @@ napi_value combineByValueWrapper(napi_env env, napi_callback_info info) {
 
         // Adicione a combinação ao array de resultados
         napi_set_element(env, resultArray, i, combination);
-        // Libere a memória alocada dinamicamente
-        free(combinations[i].elements);
+        // // Libere a memória alocada dinamicamente
+        // free(combinations[i].elements);
     }
 
     // Libere a memória alocada dinamicamente
