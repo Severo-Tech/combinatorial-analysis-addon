@@ -1,0 +1,21 @@
+{
+  "name": "addon-analise-combinatoria",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "ts-node-dev --transpile-only ./src/combinations.ts",
+    "build": "rm -rf ./dist/ && tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "gypfile": true,
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "node-addon-api": "^7.0.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.3"
+  }
+}
