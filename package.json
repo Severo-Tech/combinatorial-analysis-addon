@@ -1,11 +1,13 @@
 {
   "name": "@severo-tech/combinatorial-analysis",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "",
   "main": "dist/index.js",
   "files": [
     "dist",
-    "build"
+    "build",
+    "binding.gyp",
+    "src/addon"
   ],
   "scripts": {
     "build": "rm -rf ./dist/ && npm run build:c && tsc",
@@ -14,7 +16,7 @@
     "lint:fix": "eslint --fix 'src/**/*'",
     "test": "npm run build:c && NODE_ENV=test jest --coverage --silent --passWithNoTests",
     "test:debug": "npm run build:c && NODE_ENV=test jest --coverage",
-    "test:c": "gcc -o ./src/addon/combinations ./src/addon/test.c && ./src/addon/combinations",
+    "test:c": "gcc -o ./src/addon/combinations ./src/addon/test.c && ./src/addon/combinations && rm ./src/addon/combinations",
     "prepare": "husky install",
     "lint-staged": "lint-staged"
   },
