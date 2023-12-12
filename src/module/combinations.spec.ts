@@ -121,7 +121,7 @@ describe('Combinations', () => {
     expect(result).toHaveLength(0);
   });
 
-  it('should result a list of list of ICombinationsValue - [5][*]', () => {
+  it('should result a list of list of ICombinationsValue - [42][*]', () => {
     const target = 20;
 
     const list: ICombinationsValue[] = [
