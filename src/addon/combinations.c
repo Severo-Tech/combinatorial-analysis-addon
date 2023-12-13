@@ -1,9 +1,6 @@
-#include <stdio.h>
 #include <stdlib.h>
-#include <time.h>
 #include <math.h>
 #include <string.h>
-
 
 #include "combinations.h"
 
@@ -35,7 +32,7 @@ Combination addElementToCombination(Combination* current, ICombinationsValue* el
     newCombination.size = current->size + 1;
     newCombination.elements = malloc(newCombination.size * sizeof(ICombinationsValue));
 
-    memcpy(newCombination.elements, current->elements, current->size * sizeof(ICombinationsValue));
+    memcpy(newCombination.elements, current->elements, newCombination.size * sizeof(ICombinationsValue));
 
     newCombination.elements[current->size] = *element;
 
@@ -110,9 +107,7 @@ Combination* combineByValue(ICombinationsValue* list, int listSize, double targe
 
     qsort(list, listSize, sizeof(ICombinationsValue), compareByValue);
 
-    clock_t start = clock();
     findCombination(&current, list, listSize, target, &combinations, combinationsCount);
-    printf("Tempo de execução: %f segundos\n", ((double) (clock() - start)) / CLOCKS_PER_SEC);
 
     return combinations;
 }

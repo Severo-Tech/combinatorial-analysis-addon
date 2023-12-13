@@ -41,7 +41,7 @@ napi_value combineByValueWrapper(napi_env env, napi_callback_info info) {
         // Busca valor do atributo ID
         napi_value idProp;
         napi_get_element(env, element, 0, &idProp);
-        napi_get_value_int64(env, idProp, &list[i].id);
+        napi_get_value_int32(env, idProp, &list[i].id);
 
         // Busca valor do atributo Value
         napi_value valueProp;
@@ -60,6 +60,7 @@ napi_value combineByValueWrapper(napi_env env, napi_callback_info info) {
 
     // Libere a memória alocada dinamicamente
     free(list);
+    list = NULL;
 
     // Crie um array de objetos JS para armazenar as combinações
     napi_value resultArray;
@@ -80,11 +81,11 @@ napi_value combineByValueWrapper(napi_env env, napi_callback_info info) {
             napi_value element;
             napi_create_array_with_length(env, 2, &element);
 
-            napi_value* intAux;
+            napi_value intAux;
             napi_create_int32(env, combinations[i].elements[j].id, &intAux);
             napi_set_element(env, element, 0, intAux);
 
-            napi_value* doubleAux = NULL;
+            napi_value doubleAux;
             napi_create_double(env, combinations[i].elements[j].value, &doubleAux);
             napi_set_element(env, element, 1, doubleAux);
 
@@ -95,12 +96,14 @@ napi_value combineByValueWrapper(napi_env env, napi_callback_info info) {
         napi_set_element(env, resultArray, i, combination);
         // // Libere a memória alocada dinamicamente
         free(combinations[i].elements);
+        combinations[i].elements = NULL;
 
         napi_close_handle_scope(env, scopeB);
     }
 
     // Libere a memória alocada dinamicamente
     free(combinations);
+    combinations = NULL;
 
     return resultArray;
 }

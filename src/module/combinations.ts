@@ -17,14 +17,14 @@ export class Combinations {
   }
 
   private convertListToAddonAdapter<T extends ICombinationsValue>(list: T[]): number[][] {
-    return list.map((el: T, index: number): number[] => [index, +el.value]);
+    return list.map(
+      (el: T, index: number): number[] => [index, +el.value],
+    );
   }
 
   private convertAddonResultToCombinationsList<T extends ICombinationsValue>(originalList: T[], combinations: number[][][]): T[][] {
     return combinations.map(
-      (el: number[][]): T[] => el.map((combination: number[]): T => ({
-        ...originalList[combination[0]],
-      })),
+      (el: number[][]): T[] => el.map((combination: number[]): T => originalList[combination[0]]),
     );
   }
 }

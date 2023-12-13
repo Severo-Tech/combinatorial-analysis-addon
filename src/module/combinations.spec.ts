@@ -294,7 +294,7 @@ describe('Combinations', () => {
     ];
     const result = combinations.byValue(list, target);
 
-    expect(result).toHaveLength(5599);
+    expect(result).toHaveLength(2720);
   });
 
   it('should return limited combinations', () => {

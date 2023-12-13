@@ -5,6 +5,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
 #include "combinations.c"
 
@@ -51,27 +52,30 @@ int main() {
       {0, 19.17},
       {0, 13.88},
       {0, 2116.48 },
-      {0, 164.61 },
-      {0, 436.70 },
-      {0, 180.07 },
-      {0, 2920.35 },
-      {0, 346.21 },
-      {0, 2315.22 },
-      {0, 227.1 }
+    //   {0, 164.61 },
+    //   {0, 436.70 },
+    //   {0, 180.07 },
+    //   {0, 2920.35 },
+    //   {0, 346.21 },
+    //   {0, 2315.22 },
+    //   {0, 227.1 }
     };
 
     int listSize = sizeof(list) / sizeof(ICombinationsValue);
 
     double target = 2120.58;
-
     int combinationsCount;
+
+    clock_t start = clock();
     Combination* combinations = combineByValue(list, listSize, target, &combinationsCount);
+    double execTime = ((double) (clock() - start)) / CLOCKS_PER_SEC;
 
     // Imprimir as combinações encontradas
     for (int i = 0; i < combinationsCount; ++i) {
         printCombination(&combinations[i]);
     }
 
+    printf("Tempo de execução: %f segundos\n", execTime);
     printf("Tamanho lista para comparação: %d\n", listSize);
     printf("Total de Combinações: %d\n", combinationsCount);
 

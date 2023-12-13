@@ -15,7 +15,6 @@ DEFS_Debug := \
 	'-D_FILE_OFFSET_BITS=64' \
 	'-DOPENSSL_NO_PINSHARED' \
 	'-DOPENSSL_THREADS' \
-	'-DNAPI_DISABLE_CPP_EXCEPTIONS' \
 	'-DBUILDING_NODE_EXTENSION' \
 	'-DDEBUG' \
 	'-D_DEBUG' \
@@ -57,8 +56,7 @@ INCS_Debug := \
 	-I/Users/guilhermesevero/Library/Caches/node-gyp/18.18.0/deps/openssl/openssl/include \
 	-I/Users/guilhermesevero/Library/Caches/node-gyp/18.18.0/deps/uv/include \
 	-I/Users/guilhermesevero/Library/Caches/node-gyp/18.18.0/deps/zlib \
-	-I/Users/guilhermesevero/Library/Caches/node-gyp/18.18.0/deps/v8/include \
-	-I$(srcdir)/node_modules/node-addon-api
+	-I/Users/guilhermesevero/Library/Caches/node-gyp/18.18.0/deps/v8/include
 
 DEFS_Release := \
 	'-DNODE_GYP_MODULE_NAME=combinations-addon' \
@@ -73,7 +71,6 @@ DEFS_Release := \
 	'-D_FILE_OFFSET_BITS=64' \
 	'-DOPENSSL_NO_PINSHARED' \
 	'-DOPENSSL_THREADS' \
-	'-DNAPI_DISABLE_CPP_EXCEPTIONS' \
 	'-DBUILDING_NODE_EXTENSION'
 
 # Flags passed to all source files.
@@ -112,8 +109,7 @@ INCS_Release := \
 	-I/Users/guilhermesevero/Library/Caches/node-gyp/18.18.0/deps/openssl/openssl/include \
 	-I/Users/guilhermesevero/Library/Caches/node-gyp/18.18.0/deps/uv/include \
 	-I/Users/guilhermesevero/Library/Caches/node-gyp/18.18.0/deps/zlib \
-	-I/Users/guilhermesevero/Library/Caches/node-gyp/18.18.0/deps/v8/include \
-	-I$(srcdir)/node_modules/node-addon-api
+	-I/Users/guilhermesevero/Library/Caches/node-gyp/18.18.0/deps/v8/include
 
 OBJS := \
 	$(obj).target/$(TARGET)/src/addon/combinations.o \
