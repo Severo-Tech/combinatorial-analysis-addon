@@ -76,9 +76,9 @@ int main() {
     printf("Total de Combinações: %d\n", combinationsCount);
 
     // Liberar a memória alocada dinamicamente
-    // for (int i = 0; i < combinationsCount; ++i) {
-    //     free(combinations[i].elements);
-    // }
+    for (int i = 0; i < combinationsCount; ++i) {
+        free(combinations[i].elements);
+    }
     free(combinations);
 
     return 0;

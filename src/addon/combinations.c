@@ -5,8 +5,21 @@
 
 #include "combinations.h"
 
-const int MAX_ALLOWED_COMBINATIONS = 10000;
 const double FLOAT_ACCEPTABLE_DIFF = 0.001;
+int MAX_ALLOWED_COMBINATIONS = -1;
+
+int getMaxAllowedCombinations() {
+    if (MAX_ALLOWED_COMBINATIONS == -1) {
+        char *maxAllowedCombinations = getenv("MAX_ALLOWED_COMBINATIONS");
+
+        if (maxAllowedCombinations != NULL) {
+            MAX_ALLOWED_COMBINATIONS = atoi(maxAllowedCombinations);
+        } else {
+            MAX_ALLOWED_COMBINATIONS = 10000;
+        }
+    }
+    return MAX_ALLOWED_COMBINATIONS;
+}
 
 int compareByValue(const void *a, const void *b) {
     double aValue = ((ICombinationsValue *)a)->value;
@@ -54,7 +67,7 @@ int validateRemainingList(ICombinationsValue* remaining, int remainingSize, doub
 }
 
 void findCombination(Combination* current, ICombinationsValue* remaining, int remainingSize, double remainingValue, Combination** combinations, int* combinationsCount) {
-    if (*combinationsCount >= MAX_ALLOWED_COMBINATIONS) {
+    if (*combinationsCount >= getMaxAllowedCombinations()) {
         return;
     }
 
@@ -62,7 +75,6 @@ void findCombination(Combination* current, ICombinationsValue* remaining, int re
         *combinations = realloc(*combinations, (*combinationsCount + 1) * sizeof(Combination));
         (*combinations)[*combinationsCount] = *current;
         *combinationsCount += 1;
-        free(current->elements);
         return;
     }
 
