@@ -1,6 +1,6 @@
 {
   "name": "@severo-tech/combinatorial-analysis",
-  "version": "1.0.7",
+  "version": "1.0.10",
   "description": "",
   "main": "dist/index.js",
   "files": [

@@ -67,10 +67,10 @@ int main() {
     int combinationsCount;
     Combination* combinations = combineByValue(list, listSize, target, &combinationsCount);
 
-    // // Imprimir as combinações encontradas
-    // for (int i = 0; i < combinationsCount; ++i) {
-    //     printCombination(&combinations[i]);
-    // }
+    // Imprimir as combinações encontradas
+    for (int i = 0; i < combinationsCount; ++i) {
+        printCombination(&combinations[i]);
+    }
 
     printf("Tamanho lista para comparação: %d\n", listSize);
     printf("Total de Combinações: %d\n", combinationsCount);

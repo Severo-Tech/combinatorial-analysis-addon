@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <time.h>
 #include <math.h>
+#include <string.h>
+
 
 #include "combinations.h"
 
@@ -33,9 +35,7 @@ Combination addElementToCombination(Combination* current, ICombinationsValue* el
     newCombination.size = current->size + 1;
     newCombination.elements = malloc(newCombination.size * sizeof(ICombinationsValue));
 
-    for (int i = 0; i < current->size; ++i) {
-        newCombination.elements[i] = current->elements[i];
-    }
+    memcpy(newCombination.elements, current->elements, current->size * sizeof(ICombinationsValue));
 
     newCombination.elements[current->size] = *element;
 
@@ -43,27 +43,17 @@ Combination addElementToCombination(Combination* current, ICombinationsValue* el
 }
 
 int validateRemainingList(ICombinationsValue* remaining, int remainingSize, double remainingValue) {
-    // Filtrar elementos que cabem na soma
     int innerRemainingSize = 0;
+    double sumOfRemaining = 0;
+
     for (int i = 0; i < remainingSize; ++i) {
+        innerRemainingSize++;
         if (remaining[i].value <= remainingValue) {
-            innerRemainingSize++;
+            sumOfRemaining += remaining[i].value;
         }
     }
-    if (innerRemainingSize == 0) {
-        return 0;
-    }
 
-    // Verificar se a soma dos restantes pode combinar com o target
-    double sumOfRemaining = 0;
-    for (int i = 0; i < remainingSize; ++i) {
-        sumOfRemaining += remaining[i].value;
-    }
-    if (sumOfRemaining < remainingValue) {
-        return 0;
-    }
-
-    return 1;
+    return (innerRemainingSize > 0) && (sumOfRemaining >= remainingValue);
 }
 
 void findCombination(Combination* current, ICombinationsValue* remaining, int remainingSize, double remainingValue, Combination** combinations, int* combinationsCount) {

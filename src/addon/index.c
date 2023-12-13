@@ -53,10 +53,7 @@ napi_value combineByValueWrapper(napi_env env, napi_callback_info info) {
     double target;
     napi_get_value_double(env, argv[1], &target);
 
-    status = napi_close_handle_scope(env, scope);
-    if (status != napi_ok) {
-        napi_throw_error(env, NULL, "Cannot close Handle Scope");
-    }
+    napi_close_handle_scope(env, scope);
 
     int combinationsCount = 0;
     Combination* combinations = combineByValue(list, length, target, &combinationsCount);
@@ -64,17 +61,17 @@ napi_value combineByValueWrapper(napi_env env, napi_callback_info info) {
     // Libere a memória alocada dinamicamente
     free(list);
 
-    status = napi_open_handle_scope(env, &scope);
-    if (status != napi_ok) {
-        napi_throw_error(env, NULL, "Cannot open Handle Scope");
-    }
-
     // Crie um array de objetos JS para armazenar as combinações
     napi_value resultArray;
     napi_create_array_with_length(env, combinationsCount, &resultArray);
 
     // Preencha o array de resultados
     for (int i = 0; i < combinationsCount; ++i) {
+        napi_handle_scope scopeB;
+        status = napi_open_handle_scope(env, &scopeB);
+        if (status != napi_ok) {
+            napi_throw_error(env, NULL, "Cannot open Handle Scope");
+        }
         napi_value combination;
         napi_create_array_with_length(env, combinations[i].size, &combination);
 
@@ -97,16 +94,14 @@ napi_value combineByValueWrapper(napi_env env, napi_callback_info info) {
         // Adicione a combinação ao array de resultados
         napi_set_element(env, resultArray, i, combination);
         // // Libere a memória alocada dinamicamente
-        // free(combinations[i].elements);
+        free(combinations[i].elements);
+
+        napi_close_handle_scope(env, scopeB);
     }
 
     // Libere a memória alocada dinamicamente
     free(combinations);
 
-    status = napi_close_handle_scope(env, scope);
-    if (status != napi_ok) {
-        napi_throw_error(env, NULL, "Cannot close Handle Scope");
-    }
     return resultArray;
 }
 
